@@ -1,9 +1,12 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from "redux";
+
 import { productListReducer, productDetailsReducer } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
-// import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
+
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -21,12 +24,16 @@ const reducer = combineReducers({
 //   userLogin: { userInfo: userInfoFromStorage },
 // };
 
-const middleware = [thunk];
 
-const store = createStore(
-  reducer,
+// const middleware = [thunk];
+
+//TODO: modify reducer config here.
+const store = configureStore({
+  reducer: {
+    reducer,
+  }
   // initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+  // composeWithDevTools(applyMiddleware(...middleware))
+});
 
 export default store;
