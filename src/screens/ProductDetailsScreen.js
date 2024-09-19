@@ -27,6 +27,7 @@ const ProductDetailScreen = ({ match }) => {
           <h1>{product.name}</h1> {/* Display the product name */}
           <p>{product.description}</p> {/* Display the product description */}
           <h2>${product.price}</h2> {/* Display the product price */}
+          <Link to="/products">Back to Products</Link>
         </div>
       )}
     </div>

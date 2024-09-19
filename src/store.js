@@ -1,6 +1,3 @@
-import { applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from '@redux-devtools/extension';
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from "redux";
 
@@ -27,13 +24,13 @@ const reducer = combineReducers({
 
 // const middleware = [thunk];
 
-//TODO: modify reducer config here.
 const store = configureStore({
   reducer: {
     reducer,
   }
   // initialState,
-  // composeWithDevTools(applyMiddleware(...middleware))
 });
+
+//The thunk middleware was automatically added
 
 export default store;
