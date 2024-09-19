@@ -15,6 +15,8 @@ const ProductDetailScreen = ({ match }) => {
   useEffect(() => {
     dispatch(listProductDetails(productId)); // Dispatch the action to fetch product details based on productId
   }, [dispatch, productId]); // Dependency array ensures this effect runs when dispatch or productId changes
+  
+  //TODO: Add pagination!!
 
   return (
     <div>
@@ -27,7 +29,7 @@ const ProductDetailScreen = ({ match }) => {
           <h1>{product.name}</h1> {/* Display the product name */}
           <p>{product.description}</p> {/* Display the product description */}
           <h2>${product.price}</h2> {/* Display the product price */}
-          <Link to="/products">Back to Products</Link>
+          {/* <Link to="/products">Back to Products</Link> */}
         </div>
       )}
     </div>

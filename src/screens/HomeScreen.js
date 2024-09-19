@@ -1,13 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
-import { Link } from 'react-router-dom';
+//TODO:
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import Product from '../components/Product';
+//TODO: Import ProductList and implement MAYBE
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
+  // Fetch the productList state from Redux
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+
+  // Add a fallback in case productList is undefined
+  const { loading, error, products } = productList || {
+    loading: true, // Default loading to true while fetching data
+    error: null,
+    products: []
+  };
 
   useEffect(() => {
     dispatch(listProducts());
@@ -17,19 +28,17 @@ const HomeScreen = () => {
     <div>
       <h1>Latest Products</h1>
       {loading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : error ? (
-        <p>{error}</p>
+        <Message variant='danger'>{error}</Message>
       ) : (
-        <ul>
+        <div className='row'>
           {products.map((product) => (
-            <li key={product._id}>
-              <Link to={`/product/${product._id}`}>
-                {product.name} - ${product.price}
-              </Link>
-            </li>
+            <div key={product._id} className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
+              <Product product={product} />
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

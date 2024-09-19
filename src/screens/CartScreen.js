@@ -34,3 +34,5 @@ const CartScreen = () => {
     </div>
   );
 };
+
+export default CartScreen;
