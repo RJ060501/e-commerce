@@ -6,12 +6,23 @@ import { addToCart, removeFromCart } from "../actions/cartActions";
 const CartScreen = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  const { cartItems, loading, error } = cart; // Destructure loading, error, and cartItems from cart
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
 
+  // In case the Redux store was reset due to a page refresh.
+  // useEffect(() => {
+  //   // Fetch the cart items if cartItems is empty
+  //   if (cartItems.length === 0) {
+  //     dispatch(fetchCartItems());
+  //   }
+  // }, [dispatch, cartItems.length]);
+
+  //TODO: addToCartHandler
+
+  //TODO: Add loading...?
   return (
     <div>
       <h1>Shopping Cart</h1>

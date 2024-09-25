@@ -16,6 +16,8 @@ import CheckoutScreen from './screens/CheckoutScreen';
 // Load the Stripe instance with your publishable key
 const stripePromise = loadStripe('your-publishable-key-from-stripe');
 
+
+//TODO: Add NavBar
 const App = () => {
   return (
     <Router>
